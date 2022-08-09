@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" text="text/css" href="../css/styles.css">
+
+</head>
+
+<div class="browse_pages">
+    <div>
+        <a href="shopping.php"><img src="../images/order.png" id="icon" title="Shopping Cart" alt="Shopping Cart" style="float: right;"></a>
+    </div>
+
+    <!--Store's logo-->
+    <div>
+        <a href="main.html">
+            <img src="../images/logo.png" alt="Logo" title="home page" id="icon">
+        </a>
+    </div>
+
+    <h1> Book Rental Service</h1>
+
+<?php
+
+$con = mysqli_connect("localhost","root","");
+
+if (!$con)
+
+  {
+
+  die('Could not connect: ' . mysql_error());
+
+  }
+
+ 
+
+mysqli_select_db("bookrental", $con);
+
+ 
+
+$result = mysqli_query("SELECT * FROM books");
+
+ 
+
+echo "<table border='1'>
+
+<tr>
+
+<th>BID</th>
+
+<th>Title</th>
+
+<th>Author</th>
+
+<th>Synopsis</th>\
+
+<th>ISBN</th>
+
+<th>Copies</th>
+
+</tr>";
+
+ 
+
+while($row = mysqli_fetch_array($result))
+
+  {
+
+  echo "<tr>";
+
+  echo "<td>" . $row['BID'] . "</td>";
+
+  echo "<td>" . $row['Title'] . "</td>";
+
+  echo "<td>" . $row['Author'] . "</td>";
+
+  echo "<td>" . $row['Synopsis'] . "</td>";
+
+  echo "<td>" . $row['ISBN'] . "</td>";
+
+  echo "<td>" . $row['Copies'] . "</td>";
+
+  echo "</tr>";
+
+  }
+
+echo "</table>";
+
+ 
+
+mysqli_close($con);
+
+?>
+
+    <div id="search">
+        <form action="search_results.php" method="GET">
+            <div>
+                <input type="search" name="q" placeholder="Search...">
+            </div>
+        </form>
+        <br>
+    </div>
+
+    <!-- Side navigation -->
+<div class="sidebar">
+  <a href="#">About Us</a>
+  <a href="signup.html">Sign Up</a>
+  <a href="login.html">Login</a>
+  <a href="payment.html">Payment</a>
+  <a href= "#"> FAQs
+</div>
+
+<!-- Page content -->
+<div class="main">
+  ...
+</div>
+
+</div>
+
